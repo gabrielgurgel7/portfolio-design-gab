@@ -172,7 +172,7 @@ function Index() {
                   Sobre mim
                 </p>
                 <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4 max-w-[20ch]">
-                  Da ideia à tela.
+                  Da ideia à tela
                 </h2>
               </div>
               <div className="md:col-span-8">
