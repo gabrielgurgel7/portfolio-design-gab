@@ -209,7 +209,7 @@ function Index() {
                   Frentes de atuação
                 </p>
                 <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4">
-                  Quatro formas de comunicar.
+                  Quatro formas de comunicar
                 </h2>
               </div>
             </div>
@@ -254,7 +254,7 @@ function Index() {
                   Galeria de criativos
                 </p>
                 <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4 max-w-[24ch]">
-                  Trabalhos selecionados.
+                  Trabalhos selecionados
                 </h2>
               </div>
               <p className="hidden md:block font-body text-sm text-ink2 max-w-[28ch]">
@@ -305,7 +305,7 @@ function Index() {
               Ferramentas
             </p>
             <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4 max-w-[24ch]">
-              O caixa de ferramentas.
+              A caixa de ferramentas
             </h2>
             <ul className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-6">
               {tools.map((t) => (
