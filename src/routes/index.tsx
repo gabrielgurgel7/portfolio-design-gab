@@ -346,7 +346,8 @@ function Index() {
                 E-mail
               </a>
               <a
-                href="#"
+                href="/cv-gabriel.pdf"
+                download
                 className="inline-flex items-center gap-2 py-2 pr-3 pl-2 text-sm font-semibold text-surface rounded-full ring-1 ring-surface/25 hover:ring-surface/60 transition-colors"
               >
                 <span className="grid place-items-center size-7 rounded-full ring-1 ring-surface/40">
