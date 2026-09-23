@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjetoSlugRouteImport } from './routes/projeto.$slug'
+import { Route as VideoSlugRouteImport } from './routes/video.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ProjetoSlugRoute = ProjetoSlugRouteImport.update({
   path: '/projeto/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideoSlugRoute = VideoSlugRouteImport.update({
+  id: '/video/$slug',
+  path: '/video/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/projeto/$slug': typeof ProjetoSlugRoute
+  '/video/$slug': typeof VideoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/projeto/$slug': typeof ProjetoSlugRoute
+  '/video/$slug': typeof VideoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/projeto/$slug': typeof ProjetoSlugRoute
+  '/video/$slug': typeof VideoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projeto/$slug'
+  fullPaths: '/' | '/projeto/$slug' | '/video/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projeto/$slug'
-  id: '__root__' | '/' | '/projeto/$slug'
+  to: '/' | '/projeto/$slug' | '/video/$slug'
+  id: '__root__' | '/' | '/projeto/$slug' | '/video/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProjetoSlugRoute: typeof ProjetoSlugRoute
+  VideoSlugRoute: typeof VideoSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjetoSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/video/$slug': {
+      id: '/video/$slug'
+      path: '/video/$slug'
+      fullPath: '/video/$slug'
+      preLoaderRoute: typeof VideoSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProjetoSlugRoute: ProjetoSlugRoute,
+  VideoSlugRoute: VideoSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import profile from "@/assets/profile.png";
 import { projects } from "@/data/projects";
 import { getProjectCover } from "@/data/project-images";
+import { videoProjects } from "@/data/videos";
+import { getVideoCover } from "@/data/videos";
 import {
   ArrowUpRight,
   Palette,
@@ -12,6 +14,7 @@ import {
   MessageCircle,
   Mail,
   Download,
+  Play,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -247,52 +250,102 @@ function Index() {
 
         {/* GALERIA */}
         <section id="galeria" className="bg-surface">
-          <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
-                  Galeria de criativos
+          <div className="flex flex-col gap-10 mx-auto max-w-6xl px-6 py-20 md:py-28">
+            <section>
+              <div className="flex items-end justify-between mb-12">
+                <div>
+                  <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
+                    Design Gráfico
+                  </p>
+                  <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4 max-w-[24ch]">
+                    Trabalhos selecionados
+                  </h2>
+                </div>
+                <p className="hidden md:block font-body text-sm text-ink2 max-w-[28ch]">
+                  Uma folha de contato — cada frame colocado com intenção.
                 </p>
-                <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4 max-w-[24ch]">
-                  Trabalhos selecionados
-                </h2>
               </div>
-              <p className="hidden md:block font-body text-sm text-ink2 max-w-[28ch]">
-                Uma folha de contato — cada frame colocado com intenção.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {projects.map((p) => {
-                const cover = getProjectCover(p.slug);
-                return (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {projects.map((p) => {
+                  const cover = getProjectCover(p.slug);
+                  return (
+                    <Link
+                      key={p.slug}
+                      to="/projeto/$slug"
+                      params={{ slug: p.slug }}
+                      className="group relative block overflow-hidden rounded-[min(1vw,12px)] ring-1 ring-black/5"
+                    >
+                      <figure className="m-0">
+                        {cover && (
+                          <img
+                            src={cover}
+                            alt={p.title}
+                            width={1024}
+                            height={1280}
+                            loading="lazy"
+                            className="w-full aspect-4/5 object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        )}
+                        <figcaption className="absolute inset-x-0 bottom-0 p-4 bg-linear-to-t from-black/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/70">
+                            {p.tag}
+                          </span>
+                          <span className="block text-sm font-semibold text-white">{p.title}</span>
+                        </figcaption>
+                      </figure>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+            <div className="chrome-line" />
+            <section>
+              <div className="flex items-end justify-between mb-12">
+                <div>
+                  <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
+                    Vídeo & Motion
+                  </p>
+                  <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4 max-w-[24ch]">
+                    Peças em movimento
+                  </h2>
+                </div>
+                <p className="hidden md:block font-body text-sm text-ink2 max-w-[28ch]">
+                  Roteiro, captação e edição — do conceito ao corte final.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {videoProjects.map((v) => (
                   <Link
-                    key={p.slug}
-                    to="/projeto/$slug"
-                    params={{ slug: p.slug }}
+                    key={v.slug}
+                    to="/video/$slug"
+                    params={{ slug: v.slug }}
                     className="group relative block overflow-hidden rounded-[min(1vw,12px)] ring-1 ring-black/5"
                   >
                     <figure className="m-0">
-                      {cover && (
-                        <img
-                          src={cover}
-                          alt={p.title}
-                          width={1024}
-                          height={1280}
-                          loading="lazy"
-                          className="w-full aspect-4/5 object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      )}
+                      <img
+                        src={getVideoCover(v.slug)}
+                        alt={v.title}
+                        width={1024}
+                        height={1280}
+                        loading="lazy"
+                        className="w-full aspect-4/5 object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <span className="absolute inset-0 grid place-items-center bg-black/10 group-hover:bg-black/20 transition-colors">
+                        <span className="grid place-items-center size-12 rounded-full bg-white/90 shadow-lg shrink-0">
+                          <Play className="size-5 text-ink translate-x-[1px]" fill="currentColor" />
+                        </span>
+                      </span>
                       <figcaption className="absolute inset-x-0 bottom-0 p-4 bg-linear-to-t from-black/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                         <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/70">
-                          {p.tag}
+                          {v.tag}
                         </span>
-                        <span className="block text-sm font-semibold text-white">{p.title}</span>
+                        <span className="block text-sm font-semibold text-white">{v.title}</span>
                       </figcaption>
                     </figure>
                   </Link>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            </section>
           </div>
         </section>
 
