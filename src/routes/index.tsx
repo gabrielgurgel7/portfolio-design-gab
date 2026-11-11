@@ -2,8 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import profile from "@/assets/profile.png";
 import { projects } from "@/data/projects";
 import { getProjectCover } from "@/data/project-images";
-import { videoProjects } from "@/data/videos";
-import { getVideoCover } from "@/data/videos";
+import { getVideoCover, getVideoSrc, videoProjects } from "@/data/videos";
 import {
   ArrowUpRight,
   Palette,
@@ -322,14 +321,24 @@ function Index() {
                     className="group relative block overflow-hidden rounded-[min(1vw,12px)] ring-1 ring-black/5"
                   >
                     <figure className="m-0">
-                      <img
-                        src={getVideoCover(v.slug)}
-                        alt={v.title}
-                        width={1024}
-                        height={1280}
-                        loading="lazy"
-                        className="w-full aspect-4/5 object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                      {getVideoCover(v.slug) ? (
+                        <img
+                          src={getVideoCover(v.slug)}
+                          alt={v.title}
+                          width={1024}
+                          height={1280}
+                          loading="lazy"
+                          className="w-full aspect-4/5 object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <video
+                          src={getVideoSrc(v.slug)}
+                          muted
+                          playsInline
+                          preload="metadata"
+                          className="w-full aspect-4/5 object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
                       <span className="absolute inset-0 grid place-items-center bg-black/10 group-hover:bg-black/20 transition-colors">
                         <span className="grid place-items-center size-12 rounded-full bg-white/90 shadow-lg shrink-0">
                           <Play className="size-5 text-ink translate-x-[1px]" fill="currentColor" />

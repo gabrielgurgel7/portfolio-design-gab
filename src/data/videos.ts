@@ -11,14 +11,18 @@ export type VideoProject = {
   tag: string;
   /** Cliente/contexto, opcional — aparece como metadado na página do vídeo */
   client?: string;
+  /** Nome do arquivo de vídeo, quando diferente do padrão video.mp4 */
+  videoFile?: string;
+  /** Nome da miniatura; null desativa a miniatura customizada */
+  coverFile?: string | null;
 };
 
 /**
  * Fonte única de verdade para todos os vídeos da seção "Vídeo & Motion".
  * Para adicionar um novo vídeo:
  * 1. Crie uma pasta em public/videos/<slug>/ com o arquivo video.mp4
- *    e, se quiser uma miniatura customizada, capa.jpg (senão o navegador
- *    usa o primeiro frame do vídeo)
+ *    e, se quiser uma miniatura customizada, capa.jpg. Para nomes de arquivo
+ *    diferentes, informe videoFile e coverFile no projeto.
  * 2. Adicione um novo objeto aqui com o mesmo slug
  */
 export const videoProjects: VideoProject[] = [
@@ -100,6 +104,16 @@ export const videoProjects: VideoProject[] = [
     tag: "Depoimento",
     client: "UNI7",
   },
+  {
+    slug: "bytebank-vinheta-app",
+    title: "Bytebank — Vinheta de Abertura do App",
+    subtitle: "Vinheta de abertura para o aplicativo Bytebank, em fundo branco.",
+    description: "Peça de motion criada para a abertura do aplicativo Bytebank.",
+    tag: "Motion",
+    client: "Bytebank",
+    videoFile: "VINHETA_BYTEBANK_ABERTURA_APP_fundo_branco.mp4",
+    coverFile: null,
+  },
 ];
 
 export function getVideoBySlug(slug: string): VideoProject | undefined {
@@ -108,10 +122,13 @@ export function getVideoBySlug(slug: string): VideoProject | undefined {
 
 /** Caminho do arquivo de vídeo, servido estaticamente a partir de /public. */
 export function getVideoSrc(slug: string): string {
-  return `/videos/${slug}/video.mp4`;
+  const project = getVideoBySlug(slug);
+  return `/videos/${slug}/${project?.videoFile ?? "video.mp4"}`;
 }
 
 /** Caminho da miniatura (poster) do vídeo, servido estaticamente a partir de /public. */
-export function getVideoCover(slug: string): string {
-  return `/videos/${slug}/capa.jpg`;
+export function getVideoCover(slug: string): string | undefined {
+  const project = getVideoBySlug(slug);
+  if (project?.coverFile === null) return undefined;
+  return `/videos/${slug}/${project?.coverFile ?? "capa.jpg"}`;
 }
