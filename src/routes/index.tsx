@@ -40,7 +40,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const disciplines = [
+const disciplines: {
+  num: string;
+  title: string;
+  desc: string;
+  icon: typeof Palette;
+  link?: { href: string; label: string };
+}[] = [
   {
     num: "01",
     title: "Design",
@@ -341,7 +347,7 @@ function Index() {
                       )}
                       <span className="absolute inset-0 grid place-items-center bg-black/10 group-hover:bg-black/20 transition-colors">
                         <span className="grid place-items-center size-12 rounded-full bg-white/90 shadow-lg shrink-0">
-                          <Play className="size-5 text-ink translate-x-[1px]" fill="currentColor" />
+                          <Play className="size-5 text-ink translate-x-px" fill="currentColor" />
                         </span>
                       </span>
                       <figcaption className="absolute inset-x-0 bottom-0 p-4 bg-linear-to-t from-black/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
