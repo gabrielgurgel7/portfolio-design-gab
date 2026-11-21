@@ -1,3 +1,4 @@
+import { PortfolioHeader } from "@/components/portfolio-header";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { getVideoBySlug, getVideoCover, getVideoSrc, videoProjects } from "@/data/videos";
@@ -24,9 +25,7 @@ export const Route = createFileRoute("/video/$slug")({
     <div className="min-h-screen bg-surface flex items-center justify-center px-6">
       <div className="text-center max-w-md">
         <h1 className="font-display font-bold text-ink text-3xl">Vídeo não encontrado</h1>
-        <p className="font-body text-ink2 mt-3">
-          Esse vídeo não existe ou foi removido da seção.
-        </p>
+        <p className="font-body text-ink2 mt-3">Esse vídeo não existe ou foi removido da seção.</p>
         <Link
           to="/"
           hash="video-e-motion"
@@ -50,21 +49,7 @@ function VideoPage() {
   return (
     <div className="min-h-screen bg-surface text-ink font-body antialiased">
       {/* NAV simplificada */}
-      <header className="sticky top-4 z-50 mx-auto w-[calc(100%-3rem)] max-w-6xl bg-surface/85 backdrop-blur-sm shadow-md rounded-full">
-        <div className="flex px-4 py-4 items-center justify-between">
-          <Link to="/" className="font-display font-bold text-xl tracking-tight text-ink">
-            GAB<span className="text-accent">.</span>
-          </Link>
-          <Link
-            to="/"
-            hash="video-e-motion"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-ink ring-1 ring-ink/20 rounded-full px-4 py-2 hover:ring-ink/50 transition-colors"
-          >
-            <ArrowLeft className="size-4" />
-            Vídeos
-          </Link>
-        </div>
-      </header>
+      <PortfolioHeader detail />
 
       <main className="bg-surface">
         {/* CABEÇALHO DO VÍDEO */}
@@ -108,7 +93,7 @@ function VideoPage() {
           <Link
             to="/video/$slug"
             params={{ slug: next.slug }}
-            className="group mx-auto max-w-6xl px-6 py-16 md:py-20 flex items-center justify-between gap-6"
+            className="group portfolio-content py-16 md:py-20 flex items-center justify-between gap-6"
           >
             <div>
               <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
@@ -125,12 +110,12 @@ function VideoPage() {
         </section>
       </main>
 
-      <footer className="bg-ink">
-        <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-body text-xs text-surface/50">
+      <footer className="portfolio-inverse">
+        <div className="portfolio-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="font-body text-xs text-[var(--interface-gray)]">
             © 2026 Gabriel — Intenção em cada detalhe.
           </p>
-          <p className="font-body text-xs text-surface/50">Portfólio · 2026</p>
+          <p className="font-body text-xs text-[var(--interface-gray)]">Portfólio · 2026</p>
         </div>
       </footer>
     </div>
