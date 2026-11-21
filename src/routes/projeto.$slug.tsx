@@ -29,13 +29,11 @@ export const Route = createFileRoute("/projeto/$slug")({
         <p className="font-body text-ink2 mt-3">
           Esse projeto não existe ou foi removido da galeria.
         </p>
-        <Link
-          to="/"
-          hash="galeria"
-          className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-ink ring-1 ring-ink/20 rounded-full px-4 py-2 hover:ring-ink/50 transition-colors"
-        >
-          <ArrowLeft className="size-4" />
+        <Link to="/" hash="galeria" className="btn-3d mt-8">
           Voltar para a galeria
+          <span className="button-orb">
+            <ArrowLeft className="size-4" aria-hidden="true" />
+          </span>
         </Link>
       </div>
     </div>
@@ -113,7 +111,7 @@ function ProjectPage() {
                 {next.title}
               </h2>
             </div>
-            <span className="shrink-0 grid place-items-center size-12 rounded-full ring-1 ring-ink/20 group-hover:ring-ink/50 transition-colors">
+            <span className="button-orb size-12">
               <ArrowLeft className="size-4 rotate-180" />
             </span>
           </Link>

@@ -32,8 +32,7 @@ const groups = [
   },
 ] as const;
 
-const controlClass =
-  "top-[42%] z-10 size-11 border-[var(--interface-gray)] bg-[var(--graphite)] text-[var(--signal-white)] hover:bg-[var(--electric-lime)] hover:text-[var(--void-black)] disabled:invisible";
+const controlClass = "top-[42%] z-10 size-11 disabled:invisible";
 
 export function ProjectGallery() {
   return groups.map(({ id, title, route, items }) => (
@@ -81,10 +80,15 @@ export function ProjectGallery() {
           })}
         </CarouselContent>
         <CarouselPrevious
+          variant="portfolio"
           className={`left-2 ${controlClass}`}
           aria-label={`Anterior em ${title}`}
         />
-        <CarouselNext className={`right-2 ${controlClass}`} aria-label={`Próximo em ${title}`} />
+        <CarouselNext
+          variant="portfolio"
+          className={`right-2 ${controlClass}`}
+          aria-label={`Próximo em ${title}`}
+        />
       </Carousel>
     </section>
   ));

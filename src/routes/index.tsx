@@ -130,7 +130,7 @@ function Index() {
                 {isAnimated && (
                   <button
                     type="button"
-                    className="hero-marquee-toggle button-orb"
+                    className="hero-marquee-toggle btn-icon-3d"
                     aria-label={
                       isPaused ? "Retomar animação do letreiro" : "Pausar animação do letreiro"
                     }
@@ -145,17 +145,17 @@ function Index() {
                 )}
                 <ul className="hero-links" aria-label="Links de Gabriel">
                   <li>
-                    <a href="https://github.com/gabrielgurgel7">
+                    <a href="https://github.com/gabrielgurgel7" className="btn-3d">
                       <Github size={15} aria-hidden="true" /> GitHub
                     </a>
                   </li>
                   <li>
-                    <a href="https://wa.me/5585999022371">
+                    <a href="https://wa.me/5585999022371" className="btn-3d">
                       <MessageCircle size={15} aria-hidden="true" /> WhatsApp
                     </a>
                   </li>
                   <li>
-                    <a href="mailto:gabrielgurgel635@gmail.com">
+                    <a href="mailto:gabrielgurgel635@gmail.com" className="btn-3d">
                       <Mail size={15} aria-hidden="true" /> E-mail
                     </a>
                   </li>

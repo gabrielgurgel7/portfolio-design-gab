@@ -1,18 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpLeft, ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
-
-const themeKey = "portfolio-theme";
-
-export const initializePortfolioTheme = `
-  (() => {
-    let theme;
-    try { theme = localStorage.getItem(${JSON.stringify(themeKey)}); } catch {}
-    const dark = theme === "dark" ||
-      (theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList.toggle("dark", dark);
-  })();
-`;
+import { themeKey } from "@/lib/portfolio-theme";
 
 const sections = [
   { label: "Sobre", id: "sobre" },
@@ -88,9 +77,6 @@ export function PortfolioHeader({ detail = false }: { detail?: boolean }) {
 
   return (
     <header ref={header} className="portfolio-content portfolio-header">
-      <Link to="/" className="portfolio-brand" aria-label="Gab.Gurgel, início">
-        Gab.Gurgel
-      </Link>
       <button
         ref={menuButton}
         type="button"
@@ -102,6 +88,22 @@ export function PortfolioHeader({ detail = false }: { detail?: boolean }) {
       >
         {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
       </button>
+      <Link to="/" className="portfolio-brand" aria-label="Gab.Gurgel, início" onClick={closeMenu}>
+        <img
+          src="/logo-gab-light.svg"
+          alt=""
+          width={76}
+          height={39}
+          className="portfolio-logo-light"
+        />
+        <img
+          src="/logo-gab-dark.svg"
+          alt=""
+          width={76}
+          height={39}
+          className="portfolio-logo-dark"
+        />
+      </Link>
       <div id={menuId} className="portfolio-menu" data-open={menuOpen}>
         <nav className="portfolio-nav" aria-label="Navegação principal">
           <Link to="/" className="portfolio-nav-link portfolio-mobile-home" onClick={closeMenu}>
@@ -131,9 +133,11 @@ export function PortfolioHeader({ detail = false }: { detail?: boolean }) {
             aria-pressed={dark}
             onClick={toggleTheme}
           >
-            <span className="theme-thumb">
-              <Sun className="theme-sun" size={16} aria-hidden="true" />
-              <Moon className="theme-moon" size={16} aria-hidden="true" />
+            <span className="theme-sun" aria-hidden="true">
+              <Sun size={15} />
+            </span>
+            <span className="theme-moon" aria-hidden="true">
+              <Moon size={15} />
             </span>
           </button>
         </div>

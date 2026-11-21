@@ -26,11 +26,7 @@ export const Route = createFileRoute("/video/$slug")({
       <div className="text-center max-w-md">
         <h1 className="font-display font-bold text-ink text-3xl">Vídeo não encontrado</h1>
         <p className="font-body text-ink2 mt-3">Esse vídeo não existe ou foi removido da seção.</p>
-        <Link
-          to="/"
-          hash="video-e-motion"
-          className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-ink ring-1 ring-ink/20 rounded-full px-4 py-2 hover:ring-ink/50 transition-colors"
-        >
+        <Link to="/" hash="video-e-motion" className="btn-3d mt-8">
           <ArrowLeft className="size-4" />
           Voltar para os vídeos
         </Link>
@@ -103,7 +99,7 @@ function VideoPage() {
                 {next.title}
               </h2>
             </div>
-            <span className="shrink-0 grid place-items-center size-12 rounded-full ring-1 ring-ink/20 group-hover:ring-ink/50 transition-colors">
+            <span className="button-orb size-12">
               <ArrowLeft className="size-4 rotate-180" />
             </span>
           </Link>
