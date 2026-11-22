@@ -11,7 +11,6 @@ export type Project = {
   tag: string;
   /** Cliente/contexto, opcional — aparece como metadado na página do projeto */
   client?: string;
-  layout?: "carousel";
 };
 
 /**
@@ -23,6 +22,29 @@ export type Project = {
  */
 export const projects: Project[] = [
   {
+    slug: "stories-vila-escalada",
+    title: "Stories — Vila Escalada",
+    subtitle: "Série de seis stories criada em um projeto acadêmico para divulgar a Vila Escalada.",
+    tag: "Social Media",
+    client: "Vila Escalada",
+  },
+  {
+    slug: "amplifique-seu-talento-duetos",
+    title: "Amplifique seu talento — Duetos",
+    subtitle:
+      "Peça gráfica de um projeto acadêmico para a Duetos Escola de Música, com os níveis de aprendizado representados no seletor de um amplificador.",
+    tag: "Design",
+    client: "Duetos Escola de Música",
+  },
+  {
+    slug: "mes-do-cliente-dragao-dos-parafusos",
+    title: "Mês do Cliente — Dragão dos Parafusos",
+    subtitle:
+      "Peça promocional criada em um projeto acadêmico para a campanha de Mês do Cliente da Dragão dos Parafusos.",
+    tag: "Social Media",
+    client: "Dragão dos Parafusos",
+  },
+  {
     slug: "identidade-visual-chic-d-mais",
     title: "Identidade Visual — Chic D+",
     subtitle: "Construção da identidade visual da marca Chic D+, do conceito à aplicação.",
@@ -31,7 +53,6 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-palestras-vozes-que-libertam",
-    layout: "carousel",
     title: "Carrossel — Palestras Vozes que Libertam",
     subtitle: 'Peças para redes sociais divulgando o ciclo de palestras "Vozes que Libertam".',
     tag: "Social Media",
@@ -48,8 +69,8 @@ export const projects: Project[] = [
   {
     slug: "palestra-consciencia-negra",
     title: "Palestra — Reflexões sobre Consciência Negra",
-    subtitle: "Cobertura fotográfica e peças de divulgação da palestra sobre Consciência Negra.",
-    tag: "Fotografia",
+    subtitle: "Peças gráficas para divulgar a palestra sobre Consciência Negra.",
+    tag: "Design",
     client: "UNI7",
   },
   {
@@ -61,7 +82,6 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-educacao-classica",
-    layout: "carousel",
     title: "Carrossel — Educação Clássica",
     subtitle: "Série de posts explicando os pilares da educação clássica.",
     tag: "Social Media",
@@ -69,7 +89,6 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-sistemas-de-informacao",
-    layout: "carousel",
     title: "Carrossel — Sistemas de Informação",
     subtitle: "Peças para redes sociais apresentando o curso de Sistemas de Informação.",
     tag: "Social Media",
@@ -77,7 +96,6 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-sobre-nos-educando-para-deus",
-    layout: "carousel",
     title: "Carrossel — Sobre Nós",
     subtitle: "Carrossel institucional apresentando a proposta do projeto Educando para Deus.",
     tag: "Social Media",
@@ -85,7 +103,6 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-leitura-em-voz-alta",
-    layout: "carousel",
     title: "Carrossel — Leitura em Voz Alta",
     subtitle: "Conteúdo educativo sobre os benefícios da leitura em voz alta para crianças.",
     tag: "Social Media",
@@ -107,23 +124,25 @@ export const projects: Project[] = [
   {
     slug: "transferencia-arquitetura-urbanismo",
     title: "Transferência — Arquitetura e Urbanismo",
-    subtitle: "Cobertura e peças de divulgação para transferência de estudantes ao curso.",
-    tag: "Fotografia",
+    subtitle:
+      "Peças gráficas de divulgação do processo de transferência para o curso de Arquitetura e Urbanismo.",
+    tag: "Design",
     client: "UNI7",
   },
   {
     slug: "cerimonia-do-jaleco",
     title: "Cerimônia do Jaleco",
     subtitle:
-      "Registro fotográfico da cerimônia que marca a entrada de estudantes da área da saúde.",
-    tag: "Fotografia",
+      "Peças gráficas de divulgação da cerimônia que marca a entrada de estudantes da área da saúde.",
+    tag: "Design",
     client: "UNI7",
   },
   {
     slug: "cerimonia-do-vade-mecum",
     title: "Cerimônia do Vade Mecum",
-    subtitle: "Registro fotográfico da cerimônia de entrega do código aos estudantes de Direito.",
-    tag: "Fotografia",
+    subtitle:
+      "Peça gráfica de divulgação da cerimônia de entrega do código aos estudantes de Direito.",
+    tag: "Design",
     client: "UNI7",
   },
   {

@@ -339,24 +339,25 @@
   }
 
   .theme-toggle {
+    --theme-icon-size: 1.7rem;
     display: inline-grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    min-height: 2.75rem;
+    height: var(--theme-icon-size);
     gap: 0.15rem;
-    padding: 0.2rem;
-    border: 1px solid rgb(242 242 237 / 30%);
+    padding-inline: 0.2rem;
     border-radius: 999px;
     color: var(--interface-gray);
     background: var(--graphite);
+    box-shadow: inset 0 0 0 1px rgb(242 242 237 / 30%);
     cursor: pointer;
   }
 
   .theme-toggle span {
     display: grid;
     place-items: center;
-    width: 1.7rem;
-    height: 1.7rem;
+    width: var(--theme-icon-size);
+    height: var(--theme-icon-size);
     border-radius: 50%;
   }
 
@@ -376,7 +377,7 @@
   }
 
   .theme-toggle:hover {
-    border-color: var(--interface-gray);
+    box-shadow: inset 0 0 0 1px var(--interface-gray);
   }
 
   .button-orb {
@@ -661,11 +662,73 @@
     border-radius: inherit;
   }
 
+  .creative-carousel-viewport {
+    --creative-frame-height: min(115vw, 68svh, 44rem);
+    height: var(--creative-frame-height);
+    overflow: hidden;
+    background: var(--surface2);
+    scrollbar-width: thin;
+  }
+
+  .creative-carousel-viewport:focus-visible {
+    outline-offset: -3px;
+  }
+
+  .creative-carousel-viewport[data-zoomed] {
+    overflow: auto;
+    overscroll-behavior: contain;
+    cursor: grab;
+  }
+
+  .creative-carousel-viewport[data-zoomed]:active {
+    cursor: grabbing;
+  }
+
   .creative-carousel-image {
     display: block;
-    width: 100%;
-    height: min(115vw, 68svh, 44rem);
+    width: calc(100% * var(--creative-zoom));
+    max-width: none;
+    height: calc(var(--creative-frame-height) * var(--creative-zoom));
     object-fit: contain;
+  }
+
+  .creative-carousel-single {
+    overflow: hidden;
+    border-radius: 1.25rem;
+  }
+
+  .creative-carousel-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+
+  .creative-carousel-toolbar button:disabled {
+    opacity: 0.4;
+    cursor: default;
+    translate: none;
+  }
+
+  .creative-carousel-toolbar output {
+    min-width: 3.35rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .creative-carousel:fullscreen {
+    display: grid;
+    align-content: center;
+    max-width: none;
+    padding: 1rem;
+    background: var(--surface);
+  }
+
+  .creative-carousel:fullscreen .creative-carousel-viewport {
+    --creative-frame-height: 79dvh;
   }
 
   .creative-carousel-controls,
@@ -716,6 +779,25 @@
     content: "";
     transform: scaleX(var(--slide-progress));
     transform-origin: left;
+  }
+
+  .gallery-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 1.85rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: var(--surface2);
+    color: var(--ink);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .gallery-filter[aria-pressed="true"] {
+    background: var(--electric-lime);
+    color: var(--void-black);
   }
 
   .project-folder {

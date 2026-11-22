@@ -57,6 +57,8 @@ type Discipline = {
   linkLabel: string;
 };
 
+const hasPhotographyProjects = projects.some(({ tag }) => tag === "Fotografia");
+
 const disciplines: Discipline[] = [
   {
     color: "var(--digital-violet)",
@@ -71,8 +73,8 @@ const disciplines: Discipline[] = [
     title: "Fotografia",
     desc: "Cobertura de eventos e produção still, com olhar de composição e narrativa.",
     icon: Camera,
-    href: "#fotografia",
-    linkLabel: "Ver projetos de fotografia",
+    href: hasPhotographyProjects ? "#fotografia" : "#contato",
+    linkLabel: hasPhotographyProjects ? "Ver projetos de fotografia" : "Conversar sobre fotografia",
   },
   {
     color: "var(--digital-blue)",

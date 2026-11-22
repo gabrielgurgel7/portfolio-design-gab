@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Play } from "lucide-react";
+import { Play, X } from "lucide-react";
+import { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -34,15 +35,54 @@ const groups = [
 
 const controlClass = "top-[42%] z-10 size-11 disabled:invisible";
 
-export function ProjectGallery() {
-  return groups.map(({ id, title, route, items }) => (
-    <section key={id} aria-labelledby={id}>
-      <h2 id={id} className="font-display font-semibold text-3xl md:text-4xl mb-5">
-        {title}
-      </h2>
-      <Carousel opts={{ align: "start" }} aria-label={title} aria-roledescription="carrossel">
+type GalleryGroup = (typeof groups)[number];
+
+function ProjectGalleryGroup({ id, title, route, items }: GalleryGroup) {
+  const [selected, setSelected] = useState<string[]>([]);
+  const tags = Array.from(new Set(items.map(({ tag }) => tag)));
+  const visible = selected.length ? items.filter((item) => selected.includes(item.tag)) : items;
+
+  function toggleFilter(tag: string) {
+    setSelected((current) =>
+      current.includes(tag) ? current.filter((value) => value !== tag) : [...current, tag].sort(),
+    );
+  }
+
+  return (
+    <section aria-labelledby={id}>
+      <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <h2 id={id} className="font-display font-semibold text-3xl md:text-4xl">
+          {title}
+        </h2>
+        <div className="flex flex-wrap gap-2" role="group" aria-label={`Filtros de ${title}`}>
+          {tags.map((tag) => {
+            const active = selected.includes(tag);
+            return (
+              <button
+                key={tag}
+                type="button"
+                className="gallery-filter"
+                aria-pressed={active}
+                onClick={() => toggleFilter(tag)}
+              >
+                {tag}
+                {active && <X size={14} aria-hidden="true" />}
+              </button>
+            );
+          })}
+        </div>
+        <p className="sr-only" role="status">
+          {visible.length} {visible.length === 1 ? "projeto exibido" : "projetos exibidos"}
+        </p>
+      </div>
+      <Carousel
+        key={selected.join("|")}
+        opts={{ align: "start" }}
+        aria-label={title}
+        aria-roledescription="carrossel"
+      >
         <CarouselContent className="touch-pan-y py-1">
-          {items.map(({ slug, title, tag, client }) => {
+          {visible.map(({ slug, title, tag, client }) => {
             const isVideo = route === "/video/$slug";
             const cover = isVideo ? getVideoCover(slug) : getProjectCover(slug);
 
@@ -91,5 +131,11 @@ export function ProjectGallery() {
         />
       </Carousel>
     </section>
-  ));
+  );
+}
+
+export function ProjectGallery() {
+  return groups
+    .filter((group) => group.items.length > 0)
+    .map((group) => <ProjectGalleryGroup key={group.id} {...group} />);
 }

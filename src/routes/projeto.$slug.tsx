@@ -76,20 +76,8 @@ function ProjectPage() {
 
         {/* IMAGENS DO PROJETO */}
         <section className="portfolio-content circuit-content pb-20 md:pb-28">
-          {project.layout === "carousel" && images.length > 1 ? (
+          {images.length > 0 ? (
             <ProjectCreativeCarousel key={project.slug} images={images} title={project.title} />
-          ) : images.length > 0 ? (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {images.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt={`${project.title} — imagem ${i + 1}`}
-                  loading={i < 2 ? "eager" : "lazy"}
-                  className="w-full rounded-2xl ring-1 ring-black/5 object-cover"
-                />
-              ))}
-            </div>
           ) : (
             <p className="font-body text-ink2 text-sm">
               Nenhuma imagem cadastrada para este projeto ainda.
