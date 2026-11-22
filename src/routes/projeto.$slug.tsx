@@ -1,3 +1,4 @@
+import { ProjectCreativeCarousel } from "@/components/project-creative-carousel";
 import { PortfolioHeader } from "@/components/portfolio-header";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
@@ -75,7 +76,9 @@ function ProjectPage() {
 
         {/* IMAGENS DO PROJETO */}
         <section className="portfolio-content pb-20 md:pb-28">
-          {images.length > 0 ? (
+          {project.layout === "carousel" && images.length > 1 ? (
+            <ProjectCreativeCarousel key={project.slug} images={images} title={project.title} />
+          ) : images.length > 0 ? (
             <div className="grid gap-4 sm:grid-cols-2">
               {images.map((src, i) => (
                 <img
@@ -120,10 +123,10 @@ function ProjectPage() {
 
       <footer className="portfolio-inverse">
         <div className="portfolio-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-body text-xs text-[var(--interface-gray)]">
+          <p className="font-body text-xs text-(--interface-gray)">
             © 2026 Gabriel — Intenção em cada detalhe.
           </p>
-          <p className="font-body text-xs text-[var(--interface-gray)]">Portfólio · 2026</p>
+          <p className="font-body text-xs text-(--interface-gray)">Portfólio · 2026</p>
         </div>
       </footer>
     </div>

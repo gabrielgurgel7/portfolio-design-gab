@@ -108,10 +108,10 @@ function VideoPage() {
 
       <footer className="portfolio-inverse">
         <div className="portfolio-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-body text-xs text-[var(--interface-gray)]">
+          <p className="font-body text-xs text-(--interface-gray)">
             © 2026 Gabriel — Intenção em cada detalhe.
           </p>
-          <p className="font-body text-xs text-[var(--interface-gray)]">Portfólio · 2026</p>
+          <p className="font-body text-xs text-(--interface-gray)">Portfólio · 2026</p>
         </div>
       </footer>
     </div>

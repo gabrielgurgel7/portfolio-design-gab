@@ -1,12 +1,16 @@
+import { useId, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import profile from "@/assets/profile-cutout.png";
 import { usePortfolioStory } from "@/hooks/use-portfolio-story";
 import { ProjectGallery } from "@/components/project-gallery";
+import { PortfolioToolbox } from "@/components/portfolio-toolbox";
 import { PortfolioHeader } from "@/components/portfolio-header";
 import { projects } from "@/data/projects";
 import { getProjectCover } from "@/data/project-images";
 import { getVideoCover, videoProjects } from "@/data/videos";
 import {
+  ArrowUpRight,
+  RotateCw,
   Palette,
   Camera,
   Clapperboard,
@@ -43,48 +47,89 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const disciplines: {
+type Discipline = {
   color: string;
   title: string;
   desc: string;
   icon: typeof Palette;
-}[] = [
+  href: string;
+  linkLabel: string;
+};
+
+const disciplines: Discipline[] = [
   {
     color: "var(--digital-violet)",
     title: "Design",
     desc: "Peças gráficas, social media e identidade visual, com direção de arte pensada pra cada contexto.",
     icon: Palette,
+    href: "#design-grafico",
+    linkLabel: "Ver projetos de design",
   },
   {
     color: "var(--signal-orange)",
     title: "Fotografia",
     desc: "Cobertura de eventos e produção still, com olhar de composição e narrativa.",
     icon: Camera,
+    href: "#fotografia",
+    linkLabel: "Ver projetos de fotografia",
   },
   {
     color: "var(--digital-blue)",
     title: "Vídeo & Motion",
     desc: "Roteiro, captação e edição — do conceito ao corte final, com motion quando a peça pede.",
     icon: Clapperboard,
+    href: "#video-motion",
+    linkLabel: "Ver vídeos e motion",
   },
   {
     color: "var(--neural-green)",
     title: "IA aplicada à imagem",
     desc: "Uso de ferramentas de IA generativa (imagem e vídeo) integradas ao processo criativo, acelerando produção sem perder direção de arte.",
     icon: Sparkles,
+    href: "#contato",
+    linkLabel: "Conversar sobre IA",
   },
 ];
 
-const tools = [
-  "Photoshop",
-  "Illustrator",
-  "Affinity",
-  "Figma",
-  "Canva",
-  "CapCut",
-  "Firefly",
-  "Gemini",
-];
+function DisciplineCard({ discipline }: { discipline: Discipline }) {
+  const { color, title, desc, href, linkLabel, icon: Icon } = discipline;
+  const [flipped, setFlipped] = useState(false);
+  const backId = useId();
+
+  return (
+    <div className="story-discipline-slot">
+      <div className="story-discipline-card" data-flipped={flipped}>
+        <button
+          type="button"
+          className="discipline-turn btn-icon-3d"
+          aria-expanded={flipped}
+          aria-controls={backId}
+          aria-label={flipped ? `Voltar ao resumo de ${title}` : `Virar cartão de ${title}`}
+          onClick={() => setFlipped(!flipped)}
+        >
+          <RotateCw size={17} aria-hidden="true" />
+        </button>
+        <div className="discipline-flip">
+          <div className="discipline-face bg-surface ring-1 ring-black/5 rounded-2xl p-6 flex flex-col">
+            <span className="button-orb size-10" style={{ backgroundColor: color }}>
+              <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
+            </span>
+            <h3 className="font-display font-semibold text-ink text-xl mt-5">{title}</h3>
+            <p className="font-body text-ink2 text-sm leading-relaxed mt-2">{desc}</p>
+          </div>
+          <div id={backId} className="discipline-face discipline-back">
+            <a href={href} className="btn-3d" onClick={() => setFlipped(false)}>
+              {linkLabel}
+              <span className="button-orb">
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const featuredDesign = projects.find(({ slug }) => slug === "identidade-visual-chic-d-mais");
 const featuredMotion = videoProjects.find(({ slug }) => slug === "arqcheck-sandy-gurgel");
@@ -200,22 +245,9 @@ function Index() {
                 ))}
               </h2>
               <div className="story-disciplines grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {disciplines.map((d) => {
-                  const Icon = d.icon;
-                  return (
-                    <div key={d.title} className="story-discipline-slot">
-                      <div className="story-discipline-card h-full bg-surface ring-1 ring-black/5 rounded-2xl p-6 flex flex-col">
-                        <span className="button-orb size-10" style={{ backgroundColor: d.color }}>
-                          <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
-                        </span>
-                        <h3 className="font-display font-semibold text-ink text-xl mt-5">
-                          {d.title}
-                        </h3>
-                        <p className="font-body text-ink2 text-sm leading-relaxed mt-2">{d.desc}</p>
-                      </div>
-                    </div>
-                  );
-                })}
+                {disciplines.map((discipline) => (
+                  <DisciplineCard key={discipline.title} discipline={discipline} />
+                ))}
               </div>
             </div>
           </div>
@@ -291,24 +323,7 @@ function Index() {
 
         <div className="chrome-line" />
 
-        {/* FERRAMENTAS */}
-        <section id="ferramentas" className="bg-surface">
-          <div className="portfolio-content py-20 md:py-28">
-            <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
-              Ferramentas
-            </p>
-            <h2 className="font-display font-semibold text-ink text-3xl md:text-4xl leading-tight mt-4 max-w-[24ch]">
-              A caixa de ferramentas
-            </h2>
-            <ul className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-6">
-              {tools.map((t) => (
-                <li key={t} className="py-3 border-t border-ink/10 font-body text-ink font-medium">
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        <PortfolioToolbox />
 
         {/* CONTATO */}
         <section id="contato" className="portfolio-inverse">
@@ -316,7 +331,7 @@ function Index() {
             <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
               Contato
             </p>
-            <h2 className="font-display font-bold text-[var(--signal-white)] text-balance leading-none text-4xl md:text-6xl lg:text-7xl mt-6 max-w-[16ch]">
+            <h2 className="font-display font-bold text-(--signal-white) text-balance leading-none text-4xl md:text-6xl lg:text-7xl mt-6 max-w-[16ch]">
               Bora conversar sobre o seu <span className="chrome-text">próximo projeto?</span>
             </h2>
             <div className="mt-12 flex flex-wrap gap-3">
@@ -344,10 +359,10 @@ function Index() {
 
         <footer className="portfolio-inverse">
           <div className="portfolio-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="font-body text-xs text-[var(--interface-gray)]">
+            <p className="font-body text-xs text-(--interface-gray)">
               © 2026 Gabriel — Intenção em cada detalhe.
             </p>
-            <p className="font-body text-xs text-[var(--interface-gray)]">Portfólio · 2026</p>
+            <p className="font-body text-xs text-(--interface-gray)">Portfólio · 2026</p>
           </div>
         </footer>
       </main>

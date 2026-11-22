@@ -11,6 +11,7 @@ export type Project = {
   tag: string;
   /** Cliente/contexto, opcional — aparece como metadado na página do projeto */
   client?: string;
+  layout?: "carousel";
 };
 
 /**
@@ -30,6 +31,7 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-palestras-vozes-que-libertam",
+    layout: "carousel",
     title: "Carrossel — Palestras Vozes que Libertam",
     subtitle: 'Peças para redes sociais divulgando o ciclo de palestras "Vozes que Libertam".',
     tag: "Social Media",
@@ -59,6 +61,7 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-educacao-classica",
+    layout: "carousel",
     title: "Carrossel — Educação Clássica",
     subtitle: "Série de posts explicando os pilares da educação clássica.",
     tag: "Social Media",
@@ -66,6 +69,7 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-sistemas-de-informacao",
+    layout: "carousel",
     title: "Carrossel — Sistemas de Informação",
     subtitle: "Peças para redes sociais apresentando o curso de Sistemas de Informação.",
     tag: "Social Media",
@@ -73,6 +77,7 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-sobre-nos-educando-para-deus",
+    layout: "carousel",
     title: "Carrossel — Sobre Nós",
     subtitle: "Carrossel institucional apresentando a proposta do projeto Educando para Deus.",
     tag: "Social Media",
@@ -80,6 +85,7 @@ export const projects: Project[] = [
   },
   {
     slug: "carrossel-leitura-em-voz-alta",
+    layout: "carousel",
     title: "Carrossel — Leitura em Voz Alta",
     subtitle: "Conteúdo educativo sobre os benefícios da leitura em voz alta para crianças.",
     tag: "Social Media",

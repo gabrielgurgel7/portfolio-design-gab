@@ -139,7 +139,50 @@ export function usePortfolioStory() {
           });
         }
 
+        const toolbox = root.querySelector(".toolbox-scene");
+        const lid = toolbox?.querySelector(".toolbox-lid");
+        const origin = toolbox?.querySelector(".toolbox-origin");
+        const tools = toolbox?.querySelectorAll<HTMLElement>(".toolbox-tool");
+        if (toolbox && lid && origin && tools?.length) {
+          toolbox.classList.add("toolbox-scene-animated");
+          const launch = gsap.timeline({
+            scrollTrigger: {
+              trigger: toolbox,
+              refreshPriority: -1,
+              start: "bottom 91%",
+              end: "bottom 46%",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          });
+          launch.fromTo(
+            lid,
+            { "--toolbox-lid-angle": "0deg" },
+            { "--toolbox-lid-angle": "-125deg", duration: 0.8, ease: "power2.inOut" },
+          );
+
+          tools.forEach((tool, index) => {
+            const slot = tool.parentElement;
+            if (!slot) return;
+            const offset = (axis: "x" | "y") => {
+              const start = origin.getBoundingClientRect();
+              const target = slot.getBoundingClientRect();
+              return axis === "x"
+                ? start.left - target.left - target.width / 2
+                : start.top - target.top - target.height / 2;
+            };
+
+            launch.fromTo(
+              tool,
+              { x: () => offset("x"), y: () => offset("y"), scale: 0.38, opacity: 0 },
+              { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.95, ease: "power2.out" },
+              0.52 + index * 0.34,
+            );
+          });
+        }
+
         return () => {
+          toolbox?.classList.remove("toolbox-scene-animated");
           scene.classList.remove("portfolio-story-animated");
           aboutAnchor.style.removeProperty("top");
           hero.inert = false;
@@ -197,8 +240,13 @@ export function usePortfolioStory() {
               const { card } = item;
               const phase = clamp((playhead.progress - index * stagger) / travel);
               if (!refresh && phase === item.phase) return;
+              const settled = phase === 1;
+              if (item.phase < 0 || (item.phase === 1) !== settled) {
+                card.inert = !settled;
+                card.toggleAttribute("data-settled", settled);
+              }
               item.phase = phase;
-              if (phase === 1) {
+              if (settled) {
                 card.style.removeProperty("transform");
                 card.style.removeProperty("opacity");
                 return;
@@ -249,6 +297,8 @@ export function usePortfolioStory() {
           return () => {
             stage.classList.remove("story-disciplines-animated");
             cards.forEach(({ card }) => {
+              card.inert = false;
+              card.removeAttribute("data-settled");
               card.style.removeProperty("transform");
               card.style.removeProperty("opacity");
             });
@@ -258,6 +308,7 @@ export function usePortfolioStory() {
       media.add("(prefers-reduced-motion: no-preference) and (pointer: fine)", () =>
         enableSmoothWheelScroll(gsap),
       );
+      ScrollTrigger.refresh();
     };
 
     void setup().catch((error: unknown) => {
