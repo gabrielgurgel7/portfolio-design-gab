@@ -842,6 +842,78 @@
     );
   }
 
+  .project-folder-web {
+    background:
+      radial-gradient(
+        ellipse at 25% 8%,
+        color-mix(in srgb, var(--digital-violet) 62%, transparent),
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse at 95% 95%,
+        color-mix(in srgb, var(--digital-blue) 58%, transparent),
+        transparent 68%
+      ),
+      var(--graphite);
+  }
+
+  .web-project-title {
+    position: absolute;
+    z-index: 4;
+    top: 0.75rem;
+    left: 7%;
+    max-width: 48%;
+    color: var(--signal-white);
+    font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .web-project-screens {
+    position: absolute;
+    inset: 0;
+  }
+
+  .web-project-device {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    border: 2px solid #151922;
+    background: #151922;
+    box-shadow: 0 0.3rem 0.8rem rgb(11 13 18 / 48%);
+  }
+
+  .project-folder-cover .web-project-device img {
+    object-fit: cover;
+  }
+
+  .web-project-device-desktop {
+    top: 26%;
+    left: 7%;
+    width: 74%;
+    aspect-ratio: 1280 / 800;
+    border-width: 3px;
+    border-radius: 0.38rem;
+  }
+
+  .web-project-device-tablet {
+    z-index: 1;
+    right: 5%;
+    bottom: 9%;
+    width: 34%;
+    aspect-ratio: 768 / 1024;
+    border-radius: 0.45rem;
+  }
+
+  .web-project-device-mobile {
+    z-index: 2;
+    right: 29%;
+    bottom: 5%;
+    width: 20%;
+    aspect-ratio: 390 / 844;
+    border-radius: 0.5rem;
+  }
+
   .project-folder-cover :is(img, video) {
     position: absolute;
     inset: 0;
@@ -850,7 +922,7 @@
     object-fit: cover;
   }
 
-  .project-folder-cover::after {
+  .project-folder-cover:not(.project-folder-web)::after {
     position: absolute;
     z-index: 0;
     inset: 0;
