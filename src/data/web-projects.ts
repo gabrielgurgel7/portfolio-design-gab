@@ -9,12 +9,12 @@ export const webProjects = [
     slug: "sonavox",
     title: "SonaVox",
     tag: "Dev Web",
-    url: "https://sonavox-front-j01h0gl7j-gabrielgurgel7s-projects.vercel.app",
+    url: "https://sonavox-front-end.vercel.app/",
   },
   {
     slug: "soloist",
     title: "Soloist",
     tag: "Dev Web",
-    url: "https://soloist-doyb-q6cy76z6s-gabrielgurgel7s-projects.vercel.app",
+    url: "https://soloist-doyb.vercel.app/",
   },
 ] as const;
