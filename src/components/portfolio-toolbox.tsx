@@ -23,7 +23,7 @@ const tools = [
 export function PortfolioToolbox() {
   return (
     <section id="ferramentas" className="bg-surface" aria-labelledby="toolbox-title">
-      <div className="portfolio-content py-20 md:py-28">
+      <div className="portfolio-content circuit-content py-20 md:py-28">
         <h2 id="toolbox-title" className="font-display font-semibold text-ink text-3xl md:text-4xl">
           A caixa de ferramentas
         </h2>

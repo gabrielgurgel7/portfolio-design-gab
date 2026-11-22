@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import profile from "@/assets/profile-cutout.png";
+import { useHeroLiquify } from "@/hooks/use-hero-liquify";
 import { usePortfolioStory } from "@/hooks/use-portfolio-story";
 import { ProjectGallery } from "@/components/project-gallery";
 import { PortfolioToolbox } from "@/components/portfolio-toolbox";
@@ -136,6 +137,7 @@ const featuredMotion = videoProjects.find(({ slug }) => slug === "arqcheck-sandy
 
 function Index() {
   const { story, isAnimated, isPaused, toggleMarquee } = usePortfolioStory();
+  useHeroLiquify(story);
   return (
     <div className="portfolio-home min-h-screen bg-surface text-ink font-body antialiased">
       <PortfolioHeader />
@@ -232,7 +234,7 @@ function Index() {
 
         {/* FRENTES */}
         <section id="frentes" className="bg-surface2">
-          <div className="portfolio-content py-20 md:py-28">
+          <div className="portfolio-content circuit-content py-20 md:py-28">
             <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
               Frentes de atuação
             </p>
@@ -255,7 +257,7 @@ function Index() {
 
         {/* GALERIA */}
         <section id="galeria" className="bg-surface">
-          <div className="flex flex-col gap-10 portfolio-content py-20 md:py-28">
+          <div className="flex flex-col gap-10 portfolio-content circuit-content py-20 md:py-28">
             <section aria-labelledby="featured-title">
               <h2
                 id="featured-title"
@@ -327,7 +329,7 @@ function Index() {
 
         {/* CONTATO */}
         <section id="contato" className="portfolio-inverse">
-          <div className="portfolio-content py-24 md:py-32">
+          <div className="portfolio-content circuit-content py-24 md:py-32">
             <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
               Contato
             </p>
@@ -358,7 +360,7 @@ function Index() {
         </section>
 
         <footer className="portfolio-inverse">
-          <div className="portfolio-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="portfolio-content circuit-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="font-body text-xs text-(--interface-gray)">
               © 2026 Gabriel — Intenção em cada detalhe.
             </p>

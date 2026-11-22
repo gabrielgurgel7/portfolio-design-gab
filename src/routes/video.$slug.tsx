@@ -23,7 +23,7 @@ export const Route = createFileRoute("/video/$slug")({
   component: VideoPage,
   notFoundComponent: () => (
     <div className="min-h-screen bg-surface flex items-center justify-center px-6">
-      <div className="text-center max-w-md">
+      <div className="circuit-content text-center max-w-md">
         <h1 className="font-display font-bold text-ink text-3xl">Vídeo não encontrado</h1>
         <p className="font-body text-ink2 mt-3">Esse vídeo não existe ou foi removido da seção.</p>
         <Link to="/" hash="video-e-motion" className="btn-3d mt-8">
@@ -49,7 +49,7 @@ function VideoPage() {
 
       <main className="bg-surface">
         {/* CABEÇALHO DO VÍDEO */}
-        <section className="mx-auto max-w-4xl px-6 pt-16 pb-10 md:pt-24 md:pb-14">
+        <section className="circuit-content mx-auto max-w-4xl px-6 pt-16 pb-10 md:pt-24 md:pb-14">
           <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
             {video.tag}
             {video.client ? ` · ${video.client}` : ""}
@@ -68,7 +68,7 @@ function VideoPage() {
         </section>
 
         {/* PLAYER DO VÍDEO */}
-        <section className="mx-auto max-w-3xl px-6 pb-20 md:pb-28">
+        <section className="circuit-content mx-auto max-w-3xl px-6 pb-20 md:pb-28">
           <video
             key={video.slug}
             src={getVideoSrc(video.slug)}
@@ -89,7 +89,7 @@ function VideoPage() {
           <Link
             to="/video/$slug"
             params={{ slug: next.slug }}
-            className="group portfolio-content py-16 md:py-20 flex items-center justify-between gap-6"
+            className="group portfolio-content circuit-content py-16 md:py-20 flex items-center justify-between gap-6"
           >
             <div>
               <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
@@ -107,7 +107,7 @@ function VideoPage() {
       </main>
 
       <footer className="portfolio-inverse">
-        <div className="portfolio-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="portfolio-content circuit-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-body text-xs text-(--interface-gray)">
             © 2026 Gabriel — Intenção em cada detalhe.
           </p>

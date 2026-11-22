@@ -213,6 +213,56 @@
 }
 
 @layer components {
+  .circuit-cursor {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+
+  .circuit-cursor[data-active="true"] {
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce), (any-hover: none) {
+    .circuit-cursor {
+      display: none;
+    }
+  }
+
+  .circuit-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .desktop-cursor-ring {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 1.45rem;
+    height: 1.45rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    visibility: hidden;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+
+  @media (any-hover: hover) and (any-pointer: fine) {
+    html[data-ring-cursor],
+    html[data-ring-cursor] * {
+      cursor: none !important;
+    }
+
+    html[data-ring-cursor] .desktop-cursor-ring {
+      visibility: visible;
+    }
+  }
+
   .portfolio-header {
     position: sticky;
     top: 1rem;
@@ -424,6 +474,7 @@
 
   .portfolio-story-stage {
     position: relative;
+    z-index: 1;
   }
 
   .story-about-anchor {
@@ -462,6 +513,45 @@
     text-transform: uppercase;
   }
 
+  @supports (mask-composite: intersect) {
+    body:has(> .circuit-cursor[data-active="true"]) [data-hero-liquify] .hero-panel {
+      background: transparent;
+    }
+
+    body:has(> .circuit-cursor[data-active="true"]) [data-hero-liquify] .hero-panel::before {
+      --mask-x: calc(var(--liquify-x) - var(--liquify-panel-x));
+      --mask-y: calc(var(--liquify-y) - var(--liquify-panel-y));
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: var(--electric-lime);
+      content: "";
+    }
+
+    [data-hero-liquify] .hero-backdrop {
+      --mask-x: var(--liquify-x);
+      --mask-y: var(--liquify-y);
+    }
+
+    body:has(> .circuit-cursor[data-active="true"]) [data-hero-liquify] .hero-panel::before,
+    body:has(> .circuit-cursor[data-active="true"]) [data-hero-liquify] .hero-backdrop {
+      mask-image:
+        radial-gradient(
+          ellipse var(--liquify-rx) var(--liquify-ry) at var(--mask-x) var(--mask-y),
+          transparent 42%,
+          black 94%
+        ),
+        radial-gradient(
+          ellipse calc(var(--liquify-rx) * 0.71) calc(var(--liquify-ry) * 0.75) at
+            calc(var(--mask-x) + var(--liquify-shift))
+            calc(var(--mask-y) - var(--liquify-shift) * 0.55),
+          transparent 35%,
+          black 95%
+        );
+      mask-composite: intersect;
+    }
+  }
+
   .hero-role {
     text-align: right;
   }
@@ -471,7 +561,7 @@
     position: absolute;
     inset: 0;
     display: grid;
-    place-items: center;
+    place-items: end center;
     container-type: size;
     pointer-events: none;
   }
@@ -479,7 +569,7 @@
   .hero-portrait-frame::after {
     position: absolute;
     inset-inline: 0;
-    bottom: calc((100% - var(--portrait-height)) / 2);
+    bottom: 0;
     height: min(9rem, calc(var(--portrait-height) * 0.34));
     background: linear-gradient(to bottom, transparent, var(--electric-lime));
     content: "";
@@ -515,6 +605,10 @@
     letter-spacing: -0.07em;
     line-height: 1.12;
     white-space: nowrap;
+  }
+
+  .portfolio-story-animated .hero-marquee {
+    font-size: clamp(1.5rem, 9.75cqw, 10rem);
   }
 
   .hero-marquee-track {
@@ -1205,6 +1299,10 @@
 
     .hero-marquee {
       font-size: clamp(2.75rem, 12cqw, 4.75rem);
+    }
+
+    .portfolio-story-animated .hero-marquee {
+      font-size: clamp(3.5rem, 15cqw, 6rem);
     }
 
     .story-about-line {

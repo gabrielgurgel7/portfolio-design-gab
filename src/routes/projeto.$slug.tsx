@@ -25,7 +25,7 @@ export const Route = createFileRoute("/projeto/$slug")({
   component: ProjectPage,
   notFoundComponent: () => (
     <div className="min-h-screen bg-surface flex items-center justify-center px-6">
-      <div className="text-center max-w-md">
+      <div className="circuit-content text-center max-w-md">
         <h1 className="font-display font-bold text-ink text-3xl">Projeto não encontrado</h1>
         <p className="font-body text-ink2 mt-3">
           Esse projeto não existe ou foi removido da galeria.
@@ -56,7 +56,7 @@ function ProjectPage() {
 
       <main className="bg-surface">
         {/* CABEÇALHO DO PROJETO */}
-        <section className="mx-auto max-w-4xl px-6 pt-16 pb-10 md:pt-24 md:pb-14">
+        <section className="circuit-content mx-auto max-w-4xl px-6 pt-16 pb-10 md:pt-24 md:pb-14">
           <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
             {project.tag}
             {project.client ? ` · ${project.client}` : ""}
@@ -75,7 +75,7 @@ function ProjectPage() {
         </section>
 
         {/* IMAGENS DO PROJETO */}
-        <section className="portfolio-content pb-20 md:pb-28">
+        <section className="portfolio-content circuit-content pb-20 md:pb-28">
           {project.layout === "carousel" && images.length > 1 ? (
             <ProjectCreativeCarousel key={project.slug} images={images} title={project.title} />
           ) : images.length > 0 ? (
@@ -104,7 +104,7 @@ function ProjectPage() {
           <Link
             to="/projeto/$slug"
             params={{ slug: next.slug }}
-            className="group portfolio-content py-16 md:py-20 flex items-center justify-between gap-6"
+            className="group portfolio-content circuit-content py-16 md:py-20 flex items-center justify-between gap-6"
           >
             <div>
               <p className="font-body text-xs font-medium uppercase tracking-[0.28em] text-accent">
@@ -122,7 +122,7 @@ function ProjectPage() {
       </main>
 
       <footer className="portfolio-inverse">
-        <div className="portfolio-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="portfolio-content circuit-content py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-body text-xs text-(--interface-gray)">
             © 2026 Gabriel — Intenção em cada detalhe.
           </p>

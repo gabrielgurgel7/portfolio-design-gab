@@ -197,8 +197,8 @@ export function usePortfolioStory() {
           compact: "(max-width: 43rem), (pointer: coarse)",
         },
         ({ conditions }) => {
-          if (!conditions?.motion) return;
-          const compact = conditions.compact;
+          if (!conditions?.["motion"]) return;
+          const compact = conditions["compact"];
           const stage = root.querySelector<HTMLElement>(".story-disciplines-stage");
           const word = stage?.querySelector<HTMLElement>(".story-disciplines-word:last-child");
           const slots = stage?.querySelectorAll<HTMLElement>(".story-discipline-slot");
