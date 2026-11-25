@@ -22,34 +22,37 @@ export type Project = {
  */
 export const projects: Project[] = [
   {
-    slug: "stories-vila-escalada",
-    title: "Stories — Vila Escalada",
-    subtitle: "Série de seis stories criada em um projeto acadêmico para divulgar a Vila Escalada.",
-    tag: "Social Media",
-    client: "Vila Escalada",
-  },
-  {
-    slug: "amplifique-seu-talento-duetos",
-    title: "Amplifique seu talento — Duetos",
-    subtitle:
-      "Peça gráfica de um projeto acadêmico para a Duetos Escola de Música, com os níveis de aprendizado representados no seletor de um amplificador.",
-    tag: "Design",
-    client: "Duetos Escola de Música",
-  },
-  {
-    slug: "mes-do-cliente-dragao-dos-parafusos",
-    title: "Mês do Cliente — Dragão dos Parafusos",
-    subtitle:
-      "Peça promocional criada em um projeto acadêmico para a campanha de Mês do Cliente da Dragão dos Parafusos.",
-    tag: "Social Media",
-    client: "Dragão dos Parafusos",
-  },
-  {
     slug: "identidade-visual-chic-d-mais",
     title: "Identidade Visual — Chic D+",
     subtitle: "Construção da identidade visual da marca Chic D+, do conceito à aplicação.",
+    description:
+      "Desenvolvimento do monograma, sistema de cores, tipografia e desdobramentos em vitrine, embalagens e pontos de contato físicos e digitais.",
     tag: "Identidade Visual",
     client: "Chic D+",
+  },
+  {
+    slug: "panfleto-otica-genesis",
+    title: "Panfleto — Ótica Gênesis",
+    subtitle: "Panfleto promocional criado para a Ótica Gênesis.",
+    description:
+      "Peça impressa com hierarquia clara de oferta, chamada direta e leitura rápida para distribuição local.",
+    tag: "Design",
+    client: "Ótica Gênesis",
+  },
+  {
+    slug: "capa-radionovela-os-cinzas",
+    title: "Capa — Radionovela Os Cinzas",
+    subtitle:
+      'Arte de capa para a radionovela "Os Cinzas", unindo tipografia e atmosfera à narrativa.',
+    description:
+      "Direção de arte focada em atmosfera dramática e tipografia expressiva para destacar o título em plataformas digitais.",
+    tag: "Design",
+  },
+  {
+    slug: "ciclo-literario",
+    title: "Ciclo Literário",
+    subtitle: "Peças gráficas de identidade e divulgação para o Ciclo Literário.",
+    tag: "Design",
   },
   {
     slug: "carrossel-palestras-vozes-que-libertam",
@@ -109,12 +112,6 @@ export const projects: Project[] = [
     client: "Educando para Deus",
   },
   {
-    slug: "ciclo-literario",
-    title: "Ciclo Literário",
-    subtitle: "Peças gráficas de identidade e divulgação para o Ciclo Literário.",
-    tag: "Design",
-  },
-  {
     slug: "dia-dos-professores-saude",
     title: "Dia dos Professores — Área da Saúde",
     subtitle: "Peças de homenagem aos professores dos cursos da área da saúde.",
@@ -146,13 +143,6 @@ export const projects: Project[] = [
     client: "UNI7",
   },
   {
-    slug: "panfleto-otica-genesis",
-    title: "Panfleto — Ótica Gênesis",
-    subtitle: "Panfleto promocional criado para a Ótica Gênesis.",
-    tag: "Design",
-    client: "Ótica Gênesis",
-  },
-  {
     slug: "post-colacao-de-grau-2025",
     title: "Post — Colação de Grau 2025",
     subtitle: "Peça comemorativa para a colação de grau da turma de 2025.",
@@ -167,11 +157,27 @@ export const projects: Project[] = [
     client: "UNI7",
   },
   {
-    slug: "capa-radionovela-os-cinzas",
-    title: "Capa — Radionovela Os Cinzas",
+    slug: "stories-vila-escalada",
+    title: "Stories — Vila Escalada",
+    subtitle: "Série de seis stories criada em um projeto acadêmico para divulgar a Vila Escalada.",
+    tag: "Social Media",
+    client: "Vila Escalada",
+  },
+  {
+    slug: "amplifique-seu-talento-duetos",
+    title: "Amplifique seu talento — Duetos",
     subtitle:
-      'Arte de capa para a radionovela "Os Cinzas", unindo tipografia e atmosfera à narrativa.',
+      "Peça gráfica de um projeto acadêmico para a Duetos Escola de Música, com os níveis de aprendizado representados no seletor de um amplificador.",
     tag: "Design",
+    client: "Duetos Escola de Música",
+  },
+  {
+    slug: "mes-do-cliente-dragao-dos-parafusos",
+    title: "Mês do Cliente — Dragão dos Parafusos",
+    subtitle:
+      "Peça promocional criada em um projeto acadêmico para a campanha de Mês do Cliente da Dragão dos Parafusos.",
+    tag: "Social Media",
+    client: "Dragão dos Parafusos",
   },
 ];
 

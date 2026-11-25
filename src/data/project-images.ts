@@ -14,10 +14,11 @@ const imagesBySlug: Record<string, string[]> = {};
 
 for (const path of Object.keys(modules).sort()) {
   const match = path.match(/projetos\/([^/]+)\//);
-  if (!match) continue;
-  const slug = match[1];
-  if (!imagesBySlug[slug]) imagesBySlug[slug] = [];
-  imagesBySlug[slug].push(modules[path]);
+  const slug = match?.[1];
+  if (!slug) continue;
+  const list = (imagesBySlug[slug] ??= []);
+  const image = modules[path];
+  if (image) list.push(image);
 }
 
 /** Retorna todas as imagens de um projeto, na ordem dos arquivos (01, 02, 03...). */

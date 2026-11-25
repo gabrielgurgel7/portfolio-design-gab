@@ -15,16 +15,10 @@ import { getVideoCover, getVideoSrc, videoProjects } from "@/data/videos";
 
 const groups = [
   {
-    id: "design-grafico",
-    title: "Design gráfico",
-    route: "/projeto/$slug",
-    items: projects.filter((project) => project.tag !== "Fotografia"),
-  },
-  {
-    id: "fotografia",
-    title: "Fotografia",
-    route: "/projeto/$slug",
-    items: projects.filter((project) => project.tag === "Fotografia"),
+    id: "sites-dev-web",
+    title: "Sites e Dev Web",
+    route: null,
+    items: webProjects,
   },
   {
     id: "video-motion",
@@ -33,10 +27,10 @@ const groups = [
     items: videoProjects,
   },
   {
-    id: "sites-dev-web",
-    title: "Sites e Dev Web",
-    route: null,
-    items: webProjects,
+    id: "design-grafico",
+    title: "Design gráfico",
+    route: "/projeto/$slug",
+    items: projects.filter((project) => project.tag !== "Fotografia"),
   },
 ] as const;
 
@@ -165,6 +159,9 @@ function ProjectGalleryGroup({ id, title, route, items }: GalleryGroup) {
                     </span>
                   )}
                 </span>
+                {external && "subtitle" in item && item.subtitle && (
+                  <span className="project-folder-summary">{item.subtitle}</span>
+                )}
               </>
             );
 

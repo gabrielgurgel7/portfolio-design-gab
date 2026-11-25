@@ -30,6 +30,8 @@ export const videoProjects: VideoProject[] = [
     slug: "arqcheck-sandy-gurgel",
     title: "ArqCheck — Sandy Gurgel",
     subtitle: "Vídeo de divulgação para Instagram, unindo motion e tipografia.",
+    description:
+      "Direção de motion, ritmo tipográfico e adaptação vertical pensada para retenção nos primeiros segundos do feed e Reels.",
     tag: "Motion",
     client: "Arquiteta Sandy Gurgel",
   },
@@ -37,6 +39,8 @@ export const videoProjects: VideoProject[] = [
     slug: "sandy-gurgel-abertura",
     title: "Abertura de Marca — Sandy Gurgel",
     subtitle: "Vinheta de abertura com o monograma da marca.",
+    description:
+      "Animação de identidade para abertura e assinatura audiovisual de vídeos da marca.",
     tag: "Motion",
     client: "Arquiteta Sandy Gurgel",
   },
@@ -44,8 +48,20 @@ export const videoProjects: VideoProject[] = [
     slug: "sandy-gurgel-still",
     title: "Still — Sandy Gurgel",
     subtitle: "Peça de marca em tom cinematográfico, unindo still e motion.",
+    description:
+      "Composição com fotografia still e movimento sutil para reforçar posicionamento premium.",
     tag: "Motion",
     client: "Arquiteta Sandy Gurgel",
+  },
+  {
+    slug: "bytebank-vinheta-app",
+    title: "Bytebank — Vinheta de Abertura do App",
+    subtitle: "Vinheta de abertura para o aplicativo Bytebank, em fundo branco.",
+    description: "Peça de motion criada para a abertura do aplicativo Bytebank.",
+    tag: "Motion",
+    client: "Bytebank",
+    videoFile: "VINHETA_BYTEBANK_ABERTURA_APP_fundo_branco.mp4",
+    coverFile: null,
   },
   {
     slug: "uni7-curso-arquitetura",
@@ -77,7 +93,7 @@ export const videoProjects: VideoProject[] = [
   },
   {
     slug: "uni7-administracao",
-    title: "UNI7 — Curso de Administrção",
+    title: "UNI7 — Curso de Administração",
     subtitle:
       "Vídeo institucional destacando resultados práticos da formação em administração da UNI7.",
     tag: "Vídeo Institucional",
@@ -103,16 +119,6 @@ export const videoProjects: VideoProject[] = [
     subtitle: "Depoimento institucional sobre o compromisso da instituição com os alunos.",
     tag: "Depoimento",
     client: "UNI7",
-  },
-  {
-    slug: "bytebank-vinheta-app",
-    title: "Bytebank — Vinheta de Abertura do App",
-    subtitle: "Vinheta de abertura para o aplicativo Bytebank, em fundo branco.",
-    description: "Peça de motion criada para a abertura do aplicativo Bytebank.",
-    tag: "Motion",
-    client: "Bytebank",
-    videoFile: "VINHETA_BYTEBANK_ABERTURA_APP_fundo_branco.mp4",
-    coverFile: null,
   },
 ];
 

@@ -2,14 +2,16 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpLeft, ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { themeKey } from "@/lib/portfolio-theme";
+import { useBudgetChat } from "@/lib/budget-chat-context";
 
 const sections = [
   { label: "Sobre", id: "sobre" },
+  { label: "Serviços", id: "frentes" },
   { label: "Projetos", id: "galeria" },
-  { label: "Contato", id: "contato" },
 ];
 
 export function PortfolioHeader({ detail = false }: { detail?: boolean }) {
+  const { openChat } = useBudgetChat();
   const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
@@ -142,12 +144,19 @@ export function PortfolioHeader({ detail = false }: { detail?: boolean }) {
           </button>
         </div>
       </div>
-      <Link to="/" hash="contato" className="btn-3d portfolio-budget" onClick={closeMenu}>
+      <button
+        type="button"
+        className="btn-3d portfolio-budget"
+        onClick={() => {
+          closeMenu();
+          openChat();
+        }}
+      >
         Orçamento
         <span className="button-orb">
           <ArrowUpRight size={19} aria-hidden="true" />
         </span>
-      </Link>
+      </button>
     </header>
   );
 }

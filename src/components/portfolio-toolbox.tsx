@@ -1,23 +1,14 @@
-import {
-  Aperture,
-  Clapperboard,
-  Figma,
-  Flame,
-  Layers3,
-  Paintbrush,
-  PenTool,
-  Sparkles,
-} from "lucide-react";
+import { Clapperboard, Code2, Cpu, Figma, Layers3, PenTool, Sparkles, Wind } from "lucide-react";
 
 const tools = [
+  { name: "Figma", icon: Figma, color: "var(--neural-green)" },
+  { name: "React", icon: Code2, color: "var(--digital-blue)" },
+  { name: "TypeScript", icon: Cpu, color: "var(--digital-violet)" },
+  { name: "Tailwind & GSAP", icon: Wind, color: "var(--electric-lime)" },
   { name: "Photoshop", icon: Layers3, color: "var(--digital-blue)" },
   { name: "Illustrator", icon: PenTool, color: "var(--signal-orange)" },
-  { name: "Affinity", icon: Aperture, color: "var(--digital-violet)" },
-  { name: "Figma", icon: Figma, color: "var(--neural-green)" },
-  { name: "Canva", icon: Paintbrush, color: "var(--digital-blue)" },
   { name: "CapCut", icon: Clapperboard, color: "var(--signal-white)" },
-  { name: "Firefly", icon: Flame, color: "var(--signal-orange)" },
-  { name: "Gemini", icon: Sparkles, color: "var(--electric-lime)" },
+  { name: "IA Generativa", icon: Sparkles, color: "var(--electric-lime)" },
 ];
 
 export function PortfolioToolbox() {

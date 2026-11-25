@@ -1,7 +1,10 @@
 import { DesktopCursor } from "@/components/desktop-cursor";
 import { CircuitCursor } from "@/components/circuit-cursor";
+import { BudgetChatbot } from "@/components/budget-chatbot";
+import { BudgetChatProvider } from "@/lib/budget-chat-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
+  type ErrorComponentProps,
   Outlet,
   Link,
   createRootRouteWithContext,
@@ -15,18 +18,21 @@ import { initializePortfolioTheme } from "@/lib/portfolio-theme";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+const SITE_URL = "https://portfolio-design-gab.vercel.app";
+const OG_IMAGE_URL = `${SITE_URL}/og-cover.png`;
+
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-surface px-4">
       <div className="circuit-content max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <h1 className="font-display text-7xl font-bold text-ink">404</h1>
+        <h2 className="mt-4 font-display text-xl font-semibold text-ink">Página não encontrada</h2>
+        <p className="mt-2 text-sm text-ink2">
+          A página que você procura não existe ou foi movida.
         </p>
         <div className="mt-6">
           <Link to="/" className="btn-3d">
-            Go home
+            Voltar para o início
           </Link>
         </div>
       </div>
@@ -34,7 +40,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -42,26 +48,25 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-surface px-4">
       <div className="circuit-content max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+        <h1 className="font-display text-xl font-semibold tracking-tight text-ink">
+          Algo deu errado ao carregar esta página
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
+        <p className="mt-2 text-sm text-ink2">Tente recarregar ou voltar para a página inicial.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
+            type="button"
             onClick={() => {
-              router.invalidate();
+              void router.invalidate();
               reset();
             }}
             className="btn-3d"
           >
-            Try again
+            Tentar novamente
           </button>
           <a href="/" className="btn-3d">
-            Go home
+            Ir para o início
           </a>
         </div>
       </div>
@@ -74,21 +79,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Gabriel Gurgel · Sites Front-end, Motion Design, Design & Vídeo" },
+      {
+        name: "description",
+        content:
+          "Portfólio de Gabriel Gurgel: sites front-end, motion design, identidade visual e edição de vídeo para marcas, agências e times.",
+      },
+      { name: "author", content: "Gabriel Gurgel" },
+      {
+        property: "og:title",
+        content: "Gabriel Gurgel · Sites Front-end, Motion Design, Design & Vídeo",
+      },
+      {
+        property: "og:description",
+        content:
+          "Sua marca com visual de alto nível — do design ao site e ao vídeo. Orçamento sob medida para marcas, empreendedores e agências.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:image", content: OG_IMAGE_URL },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -125,8 +145,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <BudgetChatProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <BudgetChatbot />
+      </BudgetChatProvider>
     </QueryClientProvider>
   );
 }
